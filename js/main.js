@@ -12,9 +12,6 @@ eventsServerFunction(main);
 document.getElementById('idBouton').addEventListener('click', async function (event) {
  
 
- 
-
-document.getElementById('idBouton').addEventListener('click', function (event) {
 
     event.preventDefault();
 
@@ -49,7 +46,9 @@ document.getElementById('idBouton').addEventListener('click', function (event) {
 
     // fonction pour ajouter disponibilités
     dispoFunction(eventDiv);
+    editEvent();
 });
 
 
-})
+
+
