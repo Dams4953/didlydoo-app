@@ -10,8 +10,9 @@ header {
   color: white;
   padding: 10px 0;
   text-align: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  font-family: "Poppins", sans-serif;
 }
-
 header h1 {
   margin: 0;
 }
@@ -20,12 +21,10 @@ nav ul {
   list-style: none;
   padding: 0;
 }
-
 nav ul li {
   display: inline;
   margin-right: 20px;
 }
-
 nav ul li a {
   color: white;
   text-decoration: none;
@@ -33,17 +32,19 @@ nav ul li a {
 
 main {
   padding: 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
 }
 
 .form-group {
   margin-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
-
 .form-group label {
   display: block;
   margin-bottom: 5px;
 }
-
 .form-group input[type=text],
 .form-group input[type=date],
 .form-group textarea {
@@ -52,7 +53,6 @@ main {
   border: 1px solid #ddd;
   border-radius: 4px;
 }
-
 .form-group textarea {
   height: 100px;
   resize: vertical;
@@ -65,10 +65,27 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-family: "Poppins", sans-serif;
+}
+button:hover {
+  background-color: #3c8b3c;
+  transition: 0.2s ease-in;
 }
 
-button:hover {
-  background-color: #4cae4c;
+.creation_bouton {
+  padding-left: 20px;
+}
+
+.idDiv {
+  padding-left: 20px;
+  font-size: 14px;
+}
+.idDiv__bouton-suppression {
+  background-color: #D71313;
+}
+.idDiv__bouton-suppression:hover {
+  background-color: #a80f0f;
+  transition: 0.2s ease-in;
 }
 
 footer {
@@ -76,8 +93,8 @@ footer {
   padding: 10px 0;
   background-color: #333;
   color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-
 footer p {
   margin: 0;
 }/*# sourceMappingURL=style.css.map */

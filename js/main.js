@@ -1,3 +1,5 @@
+import { deleteItems } from './delete.js';
+
 document.getElementById('idBouton').addEventListener('click', function (event) {
 
     event.preventDefault();
@@ -10,15 +12,15 @@ document.getElementById('idBouton').addEventListener('click', function (event) {
 
     // création de la div après le click
     let div = document.createElement('div');
+    div.className = 'idDiv';
     div.innerHTML = `<p>Nom de l'événement : ${eventName}</p>
                         <p>Auteur : ${eventAuthor}</p>
                         <p>Date de l'événement : ${eventDate}</p>
-                        <p>Description : ${eventDescription}</p>`;
+                        <p>Description : ${eventDescription}</p>
+                        <button class='idDiv__bouton-suppression' type="button">Supprimer</button>
+                        `;
     let main = document.querySelector('main');
     main.appendChild(div);
-
-
-
+deleteItems();
 
 });
-
