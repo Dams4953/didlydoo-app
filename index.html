@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Didlydoo - Planificateur d'événements</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" type="module" defer></script>
+
+    
 </head>
 <body>
     <header>
@@ -36,6 +40,7 @@
                 <div class="form-group">
                     <label for="event-description">Description:</label>
                     <textarea id="event-description" name="event-description" required maxlength="256"></textarea>
+                    <button id='bouton_suppression' type="submit">Supprimer</button>
                 </div>
                 <button id="idBouton" type="submit">Créer l'événement</button>
             </form>
@@ -46,12 +51,14 @@
             
             </div>
         </section>
+
+        
     </main>
 
     <footer>
         <p>&copy; 2024 Didlydoo. Tous droits réservés.</p>
     </footer>
 
-    <script src="js/main.js" type="module" defer></script>
+    
 </body>
 </html>
