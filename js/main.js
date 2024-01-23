@@ -52,4 +52,4 @@ document.getElementById('idBouton').addEventListener('click', function (event) {
 });
 
 
-
+})
