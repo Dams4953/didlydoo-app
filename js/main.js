@@ -1,3 +1,7 @@
+ 
+import {editEvent} from './editEvent.js'
+ 
+
 document.getElementById('idBouton').addEventListener('click', function (event) {
 
     event.preventDefault();
@@ -11,14 +15,15 @@ document.getElementById('idBouton').addEventListener('click', function (event) {
     // création de la div après le click
     let div = document.createElement('div');
     div.innerHTML = `<p>Nom de l'événement : ${eventName}</p>
-                        <p>Auteur : ${eventAuthor}</p>
-                        <p>Date de l'événement : ${eventDate}</p>
-                        <p>Description : ${eventDescription}</p>`;
+                     <p>Auteur : ${eventAuthor}</p>
+                     <p>Date de l'événement : ${eventDate}</p>
+                     <p>Description : ${eventDescription}</p>
+                     <button onclick="editEvent(div, '${eventName}', '${eventAuthor}', '${eventDate}', '${eventDescription}')">Éditer</button>`;
     let main = document.querySelector('main');
     main.appendChild(div);
 
-
-
-
+    editEvent();
 });
+
+
 
