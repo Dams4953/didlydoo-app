@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import { dispoFunction } from './dispo.js';
 import { eventsServerFunction } from './eventsServer.js';
+import {editEvent} from './editEvent.js';
 
 let main = document.querySelector('main');
 
@@ -9,6 +10,11 @@ eventsServerFunction(main);
 
 // fonction bouton créer évènement
 document.getElementById('idBouton').addEventListener('click', async function (event) {
+ 
+
+ 
+
+document.getElementById('idBouton').addEventListener('click', function (event) {
 
     event.preventDefault();
 
@@ -28,6 +34,7 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
                                 <p>Auteur : ${eventAuthor}</p>
                                 <p>Date de l'événement : ${formattedDate}</p>
                                 <p>Description : ${eventDescription}</p>
+                                <button onclick="editEvent(div, '${eventName}', '${eventAuthor}', '${eventDate}', '${eventDescription}')">Éditer</button>
                                 <form class="dispo-form">
                                     <label for="dispo">Disponibilité :</label>
                                     <input type="text" name="dispoName" placeholder="Votre nom" required>
@@ -43,4 +50,6 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
     // fonction pour ajouter disponibilités
     dispoFunction(eventDiv);
 });
+
+
 
