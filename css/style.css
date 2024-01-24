@@ -1,20 +1,27 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Lato", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #EEEEEE;
 }
 
 header {
-  background-color: #333;
+  background-color: #393E46;
   color: white;
   padding: 10px 0;
   text-align: center;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  font-family: "Poppins", sans-serif;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 4px 12px 0px;
+  font-family: "Pacifico", cursive;
 }
 header h1 {
   margin: 0;
+  font-size: calc(1em + 0.5vw);
+  letter-spacing: 1px;
+  color: #00ADB5;
+}
+header h1:hover {
+  color: white;
+  transition: 0.3s ease;
 }
 
 nav ul {
@@ -29,17 +36,26 @@ nav ul li a {
   color: white;
   text-decoration: none;
 }
+nav ul li a:hover, nav ul li a:focus {
+  color: #00ADB5;
+  outline: none;
+  transition: 0.3s ease;
+}
 
 main {
   padding: 20px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 14px;
+}
+main h2 {
+  color: #393E46;
+  margin-left: 10px;
 }
 
 .form-group {
   margin-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 1.2%;
+  padding-right: 1.2%;
 }
 .form-group label {
   display: block;
@@ -59,42 +75,69 @@ main {
 }
 
 button {
-  background-color: #5cb85c;
+  background-color: #00ADB5;
   color: white;
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
 }
 button:hover {
-  background-color: #3c8b3c;
-  transition: 0.2s ease-in;
+  background-color: #00959c;
+  transition: background-color 0.3s ease;
+}
+button:focus {
+  outline: 2px solid #00ADB5;
 }
 
 .creation_bouton {
   padding-left: 20px;
 }
 
-.idDiv {
-  padding-left: 20px;
+.conteneur {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  padding-left: 1.1%;
+}
+.conteneur__idDiv {
+  padding-left: 2.2%;
+  padding-bottom: 2%;
+  padding-top: 0.7%;
   font-size: 14px;
+  background-color: #393E46;
+  color: #EEEEEE;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.idDiv__bouton-suppression {
+.conteneur__idDiv__bouton-suppression {
   background-color: #D71313;
+  margin-left: 3px;
 }
-.idDiv__bouton-suppression:hover {
+.conteneur__idDiv__bouton-suppression:hover {
   background-color: #a80f0f;
-  transition: 0.2s ease-in;
+  transition: background-color 0.3s ease;
+}
+
+.dispo-form {
+  margin-top: 1%;
+  font-family: "Lato", sans-serif;
 }
 
 footer {
   text-align: center;
   padding: 10px 0;
-  background-color: #333;
+  background-color: #393E46;
   color: white;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 4px 12px 0px;
+  font-family: "Pacifico", cursive;
 }
 footer p {
   margin: 0;
+}
+
+.dispo-form button {
+  margin-left: 0.3%;
 }/*# sourceMappingURL=style.css.map */
