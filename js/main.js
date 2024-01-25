@@ -6,11 +6,13 @@ import { editEvent } from './editEvent.js';
 
 let main = document.querySelector('main');
 
+// Appelle fonction EventsApi pour récup liste évents du serveur
+const events = await EventsApi();
+
 // Fonction pour obtenir et afficher données du serveur
 async function majEvents() {
+    
     try {
-        // Appelle fonction EventsApi pour récup liste évents du serveur
-        const events = await EventsApi();
 
         // mise à jour du html avec les données du serveur
         events.forEach(data => {
@@ -40,9 +42,6 @@ async function majEvents() {
             main.appendChild(conteneur);
             conteneur.appendChild(eventDiv);
 
-            // appel fonction pour la suppression
-            deleteItems();
-
             // appel fonction pour les disponiblités
             dispoFunction(eventDiv);
 
@@ -70,7 +69,7 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
     let eventDescription = document.getElementById('event-description').value;
 
     // format de la date
-    let formatDate = format(new Date(eventDate), 'dd-MM-yyyy');
+    let formatDate = format(new Date(eventDate), 'yyyy-MM-dd');
 
     // création div à chaque click sur le bouton
     let eventDiv = document.createElement('div');
@@ -99,6 +98,28 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
     try {
         await creationEventApi({
             name: eventName,
+            description: eventDescription,
+            author: eventAuthor,
+            dates: [formatDate],
+        });
+
+        // appel fonction pour les disponiblités
+        dispoFunction(eventDiv);
+
+        // appel fonction pour modifier
+        editEvent();
+
+    } catch (error) {
+
+        console.error('error fonction bouton créer un événement', error);
+
+    }
+});
+
+    // Envoie les données de la nouvelle div au serveur (POST)
+    try {
+        await creationEventApi({
+            name: eventName,
             dates: [formatDate],
             author: eventAuthor,
             description: eventDescription,
@@ -117,5 +138,8 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
 
         console.error('error fonction bouton créer un événement', error);
 
-    }
-});
+    };
+
+
+// appel fonction pour la suppression
+deleteItems(events);
