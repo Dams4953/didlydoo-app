@@ -1,13 +1,13 @@
 import { deleteItems } from './delete.js';
 import { format } from 'date-fns';
 import { dispoFunction } from './dispo.js';
-import { EventsApi, creationEventApi } from './eventsServer.js';
+import { getEventApi, postEventApi } from './eventsServer.js';
 import { editEvent } from './editEvent.js';
 
 let main = document.querySelector('main');
 
 // Appelle fonction EventsApi pour récup liste évents du serveur
-const events = await EventsApi();
+const events = await getEventApi();
 
 // Fonction pour obtenir et afficher données du serveur
 async function majEvents() {
@@ -96,7 +96,7 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
 
     // Envoie les données de la nouvelle div au serveur (POST)
     try {
-        await creationEventApi({
+        await postEventApi({
             name: eventName,
             description: eventDescription,
             author: eventAuthor,
@@ -115,30 +115,6 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
 
     }
 });
-
-    // Envoie les données de la nouvelle div au serveur (POST)
-    try {
-        await creationEventApi({
-            name: eventName,
-            dates: [formatDate],
-            author: eventAuthor,
-            description: eventDescription,
-        });
-
-        // appel fonction pour la suppression
-        deleteItems();
-
-        // appel fonction pour les disponiblités
-        dispoFunction(eventDiv);
-
-        // appel fonction pour modifier
-        editEvent();
-
-    } catch (error) {
-
-        console.error('error fonction bouton créer un événement', error);
-
-    };
 
 
 // appel fonction pour la suppression

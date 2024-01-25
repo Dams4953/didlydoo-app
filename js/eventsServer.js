@@ -1,4 +1,4 @@
-export async function EventsApi() {
+export async function getEventApi() {
     try {
 
         const response = await fetch('http://localhost:3000/api/events/');
@@ -8,13 +8,13 @@ export async function EventsApi() {
 
     } catch (error) {
 
-        console.error('error fonction EventsApi');
+        console.error('error fonction getEventApi');
 
     }
 }
 
 // Fonction création d'un évent avec l'api
-export async function creationEventApi(eventData) {
+export async function postEventApi(eventData) {
     try {
 
         const response = await fetch('http://localhost:3000/api/events/', {
@@ -31,7 +31,8 @@ export async function creationEventApi(eventData) {
 
     } catch (error) {
 
-        console.error('error fonction creationEventApi');
+        console.error('error fonction EventApi');
 
     }
 }
+
