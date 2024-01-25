@@ -20,10 +20,10 @@ async function majEvents() {
             eventDiv.className = 'conteneur__idDiv';
 
             // html de la div
-            eventDiv.innerHTML = `<p>Nom de l'événement : ${data.name}</p>
-                                        <p>Auteur : ${data.author}</p>
-                                        <p>Date de l'événement : ${data.dates[0]}</p>
-                                        <p>Description : ${data.description}</p>
+            eventDiv.innerHTML = `<p><b>Nom de l'événement</b> : ${data.name}</p>
+                                        <p><b>Auteur</b> : ${data.author}</p>
+                                        <p><b>Date de l'événement</b> : ${data.dates[0]}</p>
+                                        <p><b>Description</b> : ${data.description}</p>
                                         <button onclick="editEvent(div, '${data.name}', '${data.author}', '${data.dates[0]}', '${data.description}')">Éditer</button>
                                         <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>
                                         <form class="dispo-form">
@@ -75,10 +75,10 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
     // création div à chaque click sur le bouton
     let eventDiv = document.createElement('div');
     eventDiv.className = 'conteneur__idDiv';
-    eventDiv.innerHTML = `<p>Nom de l'événement : ${eventName}</p>
-                                <p>Auteur : ${eventAuthor}</p>
-                                <p>Date de l'événement : ${formatDate}</p>
-                                <p>Description : ${eventDescription}</p>
+    eventDiv.innerHTML = `<p><b>Nom de l'événement</b> : ${eventName}</p>
+                                <p><b>Auteur</b> : ${eventAuthor}</p>
+                                <p><b>Date de l'événement</b> : ${formatDate}</p>
+                                <p><b>Description</b> : ${eventDescription}</p>
                                 <button onclick="editEvent(div, '${eventName}', '${eventAuthor}', '${eventDate}', '${eventDescription}')">Éditer</button>
                                 <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>
                                 <form class="dispo-form">
