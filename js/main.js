@@ -1,17 +1,17 @@
 import { deleteItems } from './delete.js';
 import { format } from 'date-fns';
 import { dispoFunction } from './dispo.js';
-import { EventsApi, creationEventApi } from './eventsServer.js';
+import { getEventApi, postEventApi } from './eventsServer.js';
 import { editEvent } from './editEvent.js';
 
 let main = document.querySelector('main');
 
 // Appelle fonction EventsApi pour récup liste évents du serveur
-const events = await EventsApi();
+const events = await getEventApi();
 
 // Fonction pour obtenir et afficher données du serveur
 async function majEvents() {
-    
+
     try {
 
         // mise à jour du html avec les données du serveur
@@ -20,6 +20,7 @@ async function majEvents() {
             // création div pour chaque évent
             let eventDiv = document.createElement('div');
             eventDiv.className = 'conteneur__idDiv';
+
 
             // html de la div
             eventDiv.innerHTML = `<p><b><h3>Nom de l'événement</b> : ${data.name}</h3></p>
@@ -44,6 +45,7 @@ async function majEvents() {
             main.appendChild(conteneur);
             conteneur.appendChild(eventDiv);
 
+
             // appel fonction pour les disponiblités
             dispoFunction(eventDiv);
 
@@ -59,48 +61,94 @@ async function majEvents() {
 
 majEvents();
 
-// fonction bouton créer un événement
+// ajouter une date
+document.getElementById('add-date').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    let datesContainer = document.getElementById('dates-container');
+
+    if (datesContainer) {
+
+
+        let newInputDate = document.createElement('input');
+        newInputDate.className = 'input-ajouts-dates';
+        newInputDate.type = 'date';
+
+
+        datesContainer.appendChild(newInputDate);
+    }
+});
+
+
+// créer un événement
 document.getElementById('idBouton').addEventListener('click', async function (event) {
 
     event.preventDefault();
 
-    // Récupère les valeurs du formulaire
     let eventName = document.getElementById('event-name').value;
     let eventAuthor = document.getElementById('event-author').value;
-    let eventDate = document.getElementById('event-date').value;
     let eventDescription = document.getElementById('event-description').value;
 
-    // format de la date
-    let formatDate = format(new Date(eventDate), 'yyyy-MM-dd');
-
-    // création div à chaque click sur le bouton
+    // div
     let eventDiv = document.createElement('div');
     eventDiv.className = 'conteneur__idDiv';
+
+    // dates
+    let datesParagraphs = [];
+    let formattedDate;
+
+    let eventDate = document.getElementById('event-date').value;
+    let datesContainer = document.getElementById('dates-container');
+
+
+    let formattedEventDate = format(new Date(eventDate), 'dd-MM-yyyy');
+    let eventDateParagraph = document.createElement('p');
+    eventDateParagraph.textContent = `Date de l'événement: ${formattedEventDate}`;
+    datesParagraphs.push(eventDateParagraph);
+
+
+    // Ajouter chaque date dans un paragraphe différent
+    
+    datesContainer.querySelectorAll('.input-ajouts-dates').forEach((dateInput, index) => {
+        formattedDate = format(new Date(dateInput.value), 'dd-MM-yyyy');
+        let dateParagraph = document.createElement('p');
+        dateParagraph.textContent = `Date de l'événement ${index + 1}: ${formattedDate}`;
+        datesParagraphs.push(dateParagraph);
+    });
+
+    // Ajouter tous les paragraphes de date à eventDiv
+    datesParagraphs.forEach(dateParagraph => {
+        eventDiv.appendChild(dateParagraph);
+    });
+
+    // html div
     eventDiv.innerHTML = `<p><b><h3>Nom de l'événement</b> : ${eventName}</h3></p>
-                                <p><span class="material-symbols-outlined">person</span><b>Auteur</b> : ${eventAuthor}</p>
-                                <p><span class="material-symbols-outlined">calendar_month</span><b>Date de l'événement</b> : ${formatDate}</p>
-                                <p><span class="material-symbols-outlined">event_note</span><b>Description</b> : ${eventDescription}</p>
-                                <button class="conteneur__idDiv__bouton-edit" onclick="editEvent(div, '${eventName}', '${eventAuthor}', '${eventDate}', '${eventDescription}')">Éditer</button>
-                                <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>
-                                <form class="conteneur__idDiv__dispo-form">
-                                    <label for="conteneur__idDiv__dispo-form">Disponibilité :</label>
-                                    <input type="text" name="dispoName" placeholder="Votre nom" required>
-                                    <select name="dispoStatus" required>
-                                        <option value="disponible">Disponible</option>
-                                        <option value="indisponible">Indisponible</option>
-                                    </select>
-                                    <button class="conteneur__idDiv__dispo-form__edit" type="submit"><span class="material-symbols-outlined">
-                                    add
-                                    </span></button>
-                                </form>
-                                <div class="dispo-list"></div>`;
+                            <p><span class="material-symbols-outlined">person</span><b>Auteur</b> : ${eventAuthor}</p>
+                           
+                            <p><span class="material-symbols-outlined">event_note</span><b>Description</b> : ${eventDescription}</p>
+                            <button class="conteneur__idDiv__bouton-edit" onclick="editEvent(eventDiv, '${eventName}', '${eventAuthor}', '${formattedEventDate}', '${formattedDate}', '${eventDescription}')">Éditer</button>
+                            <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>
+                            <form class="conteneur__idDiv__dispo-form">
+                                <label for="conteneur__idDiv__dispo-form">Disponibilité :</label>
+                                <input type="text" name="dispoName" placeholder="Votre nom" required>
+                                <select name="dispoStatus" required>
+                                    <option value="disponible">Disponible</option>
+                                    <option value="indisponible">Indisponible</option>
+                                </select>
+                                <button class="conteneur__idDiv__dispo-form__edit" type="submit"><span class="material-symbols-outlined">
+                                add
+                                </span></button>
+                            </form>
+                            <div class="dispo-list"></div>`;
+
     let conteneur = document.querySelector('.conteneur');
     main.appendChild(conteneur);
     conteneur.appendChild(eventDiv);
 
+
     // Envoie les données de la nouvelle div au serveur (POST)
     try {
-        await creationEventApi({
+        await postEventApi({
             name: eventName,
             description: eventDescription,
             author: eventAuthor,
@@ -120,30 +168,8 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
     }
 });
 
-    // Envoie les données de la nouvelle div au serveur (POST)
-    try {
-        await creationEventApi({
-            name: eventName,
-            dates: [formatDate],
-            author: eventAuthor,
-            description: eventDescription,
-        });
-
-        // appel fonction pour la suppression
-        deleteItems();
-
-        // appel fonction pour les disponiblités
-        dispoFunction(eventDiv);
-
-        // appel fonction pour modifier
-        editEvent();
-
-    } catch (error) {
-
-        console.error('error fonction bouton créer un événement', error);
-
-    };
-
 
 // appel fonction pour la suppression
 deleteItems(events);
+
+
