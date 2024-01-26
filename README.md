@@ -1,8 +1,37 @@
 # Didlydoo App
 
+### description
+
+Didlydoo App se distingue comme une solution web élaborée pour simplifier l'organisation d'événements entre amis et proches. En exploitant Didlydoo, les utilisateurs peuvent explorer, créer, personnaliser et effacer des événements, tout en supervisant aisément la disponibilité de chaque participant. Didlydoo effectue une identification automatique des dates optimales afin d'optimiser la participation à votre événement de manière intuitive.
+
+### screens
+
+![Capture d'écran 2024-01-26 153900](https://github.com/Dams4953/didlydoo-app/assets/141829372/32df369b-3b7f-46a3-8ad5-07626fa4a3ee)
+![Capture d'écran 2024-01-26 155256](https://github.com/Dams4953/didlydoo-app/assets/141829372/8ef89eb3-9f1c-42ba-bd42-a1bc51762b6a)
+![Capture d'écran 2024-01-26 154106](https://github.com/Dams4953/didlydoo-app/assets/141829372/ea9f2a5b-c089-4437-848d-19529e1c9fa5)
+
+### collaborateurs
+
+- Alexis
+- Joshua
+- Damien
 
 ## Technologies
 
+- **HTML, CSS/SASS, et JavaScript :** Ils constituent l'infrastructure pour la structure, la présentation et le comportement interactif du site.
+- **Fetch API :** Utilisé afin de réaliser des requêtes HTTP depuis le navigateur vers le serveur.
+- **Vite :** En tant que bundler, il est utilisé pour regrouper et optimiser les fichiers JS et CSS du projet.
+- **date-fns :** Intégré pour faciliter la manipulation des dates de manière efficace.
+- **Node.js :** Employé pour initialiser le serveur web et assurer la gestion des requêtes HTTP.
+
+
+
+
+## Installation
+
+Clonez le répertoire backend sur votre ordinateur et ouvrez-le dans un terminal, puis tapez npm install une fois pour installer les dépendances.
+
+Pour lancer le serveur, tapez simplement node server/index.mjs pour démarrer le serveur (le terminal doit rester ouvert et opérationnel).
 
 <table>
         <thead>
@@ -75,6 +104,8 @@
                 <td>/api/events/[id]/attend</td>
                 <td>{ name: string, dates: [{ date: date 'YYYY-MM-DD', available: boolean (true/false) }] }</td>
                 <td>Modifie une participation pour l’événement donné. Vous devez fournir le nom du participant et quelques
+
+
                     disponibilités, sous forme d'un tableau d'objets</td>
             </tr>
         </tbody>
