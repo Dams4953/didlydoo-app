@@ -1,28 +1,30 @@
 [
   {
-    "id": "93e5f854c417",
-    "name": "Réunion semaine prochaine",
-    "author": "Alexis",
-    "description": "Test test ets",
+    "id": "982838eca923",
+    "name": "zd",
+    "author": "zd",
+    "description": "zd",
     "dates": [
-      "2024-01-28"
+      "0453-04-05",
+      "0453-04-05"
     ],
-    "created_at": "2024-01-26T10:08:18.348Z",
+    "created_at": "2024-01-26T13:01:02.023Z",
     "num_modification": 0,
-    "last_modification": "2024-01-26T10:08:18.348Z",
+    "last_modification": "2024-01-26T13:01:02.023Z",
     "attendees": []
   },
   {
-    "id": "c7bd17d98cb2",
-    "name": "Réunion semaine prochaine",
-    "author": "Alexis",
-    "description": "Test test ets",
+    "id": "2bc3f42bc2ef",
+    "name": "zd",
+    "author": "zd",
+    "description": "zd",
     "dates": [
-      "2024-01-28"
+      "0453-04-05",
+      "0453-04-05"
     ],
-    "created_at": "2024-01-26T10:08:18.195Z",
+    "created_at": "2024-01-26T13:00:07.422Z",
     "num_modification": 0,
-    "last_modification": "2024-01-26T10:08:18.195Z",
+    "last_modification": "2024-01-26T13:00:07.422Z",
     "attendees": []
   }
 ]

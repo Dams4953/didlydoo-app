@@ -61,23 +61,22 @@ async function majEvents() {
 
 majEvents();
 
-// ajouter une date
+// ajouter dates
+let eventDateInput = document.getElementById('event-date');
+
 document.getElementById('add-date').addEventListener('click', function (event) {
     event.preventDefault();
 
     let datesContainer = document.getElementById('dates-container');
 
-    if (datesContainer) {
+    if (datesContainer && eventDateInput) {
 
-
-        let newInputDate = document.createElement('input');
-        newInputDate.className = 'input-ajouts-dates';
-        newInputDate.type = 'date';
-
+        let newInputDate = eventDateInput.cloneNode(true);
 
         datesContainer.appendChild(newInputDate);
     }
 });
+
 
 
 // créer un événement
@@ -94,39 +93,32 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
     eventDiv.className = 'conteneur__idDiv';
 
     // dates
-    let datesParagraphs = [];
-    let formattedDate;
-
-    let eventDate = document.getElementById('event-date').value;
+    let datesTab = [];
+    let formattedEventDate;
     let datesContainer = document.getElementById('dates-container');
 
-
-    let formattedEventDate = format(new Date(eventDate), 'dd-MM-yyyy');
-    let eventDateParagraph = document.createElement('p');
-    eventDateParagraph.textContent = `Date de l'événement: ${formattedEventDate}`;
-    datesParagraphs.push(eventDateParagraph);
-
-
-    // Ajouter chaque date dans un paragraphe différent
-    
-    datesContainer.querySelectorAll('.input-ajouts-dates').forEach((dateInput, index) => {
-        formattedDate = format(new Date(dateInput.value), 'dd-MM-yyyy');
+    datesContainer.querySelectorAll('.input-ajouts-dates').forEach((dateInput) => {
+        formattedEventDate = format(new Date(dateInput.value), 'dd-MM-yyyy');
         let dateParagraph = document.createElement('p');
-        dateParagraph.textContent = `Date de l'événement ${index + 1}: ${formattedDate}`;
-        datesParagraphs.push(dateParagraph);
+        dateParagraph.textContent = `Date de l'événement : ${formattedEventDate}`;
+        datesTab.push(dateParagraph);
     });
 
-    // Ajouter tous les paragraphes de date à eventDiv
-    datesParagraphs.forEach(dateParagraph => {
+    // Ajouter tous les paragraphes de dates à eventDiv
+    datesTab.forEach(dateParagraph => {
         eventDiv.appendChild(dateParagraph);
     });
+    console.log(datesTab);
+
+
 
     // html div
-    eventDiv.innerHTML = `<p><b><h3>Nom de l'événement</b> : ${eventName}</h3></p>
+    eventDiv.innerHTML += `<p><b><h3>Nom de l'événement</b> : ${eventName}</h3></p>
                             <p><span class="material-symbols-outlined">person</span><b>Auteur</b> : ${eventAuthor}</p>
                            
                             <p><span class="material-symbols-outlined">event_note</span><b>Description</b> : ${eventDescription}</p>
-                            <button class="conteneur__idDiv__bouton-edit" onclick="editEvent(eventDiv, '${eventName}', '${eventAuthor}', '${formattedEventDate}', '${formattedDate}', '${eventDescription}')">Éditer</button>
+                            <button class="conteneur__idDiv__bouton-edit" onclick="editEvent(eventDiv, '${eventName}', '${eventAuthor}', '${formattedEventDate}', '${eventDescription}', '${formattedEventDate}')">Éditer</button>
+
                             <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>
                             <form class="conteneur__idDiv__dispo-form">
                                 <label for="conteneur__idDiv__dispo-form">Disponibilité :</label>
@@ -145,14 +137,23 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
     main.appendChild(conteneur);
     conteneur.appendChild(eventDiv);
 
+    function extractDatesAndFormat(datesTab) {
+        return datesTab.map(dateElement => {
+            // Supposons que le texte du paragraphe contient la date au format 'Date de l'événement : dd-MM-yyyy'
+            const dateString = dateElement.textContent.split(': ')[1].trim();
+            return format(new Date(dateString), 'yyyy-MM-dd');
+        });
+    }
+
 
     // Envoie les données de la nouvelle div au serveur (POST)
     try {
+        const formattedDates = extractDatesAndFormat(datesTab);
         await postEventApi({
             name: eventName,
             description: eventDescription,
             author: eventAuthor,
-            dates: [formatDate],
+            dates: formattedDates
         });
 
         // appel fonction pour les disponiblités
@@ -160,6 +161,7 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
 
         // appel fonction pour modifier
         editEvent();
+        
 
     } catch (error) {
 

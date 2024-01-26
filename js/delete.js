@@ -25,6 +25,7 @@ export function deleteItems(events) {
                 await deleteEvent(eventId);
                 
                 bouton.parentElement.remove();
+                
 
             } catch (error) {
                 console.error('Erreur lors de la suppression côté client', error);
