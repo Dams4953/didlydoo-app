@@ -1,28 +1,41 @@
 [
   {
-    "id": "7b23c7868a6d",
-    "name": "z",
-    "author": "z",
-    "description": "z",
+    "id": "93e5f854c417",
+    "name": "Réunion semaine prochaine",
+    "author": "Alexis",
+    "description": "Test test ets",
     "dates": [
-      "0002-02-22"
+      "2024-01-28"
     ],
-    "created_at": "2024-01-24T15:33:55.781Z",
+    "created_at": "2024-01-26T10:08:18.348Z",
     "num_modification": 0,
-    "last_modification": "2024-01-24T15:33:55.781Z",
+    "last_modification": "2024-01-26T10:08:18.348Z",
     "attendees": []
   },
   {
-    "id": "1797250894e6",
-    "name": "z",
-    "author": "z",
-    "description": "z",
+    "id": "c7bd17d98cb2",
+    "name": "Réunion semaine prochaine",
+    "author": "Alexis",
+    "description": "Test test ets",
     "dates": [
-      "0002-02-22"
+      "2024-01-28"
     ],
-    "created_at": "2024-01-24T15:33:47.240Z",
+    "created_at": "2024-01-26T10:08:18.195Z",
     "num_modification": 0,
-    "last_modification": "2024-01-24T15:33:47.240Z",
+    "last_modification": "2024-01-26T10:08:18.195Z",
+    "attendees": []
+  },
+  {
+    "id": "3a17fe59c65d",
+    "name": "Réunion semaine prochaine",
+    "author": "Alexis",
+    "description": "Test test ets",
+    "dates": [
+      "2024-01-28"
+    ],
+    "created_at": "2024-01-26T10:08:18.053Z",
+    "num_modification": 0,
+    "last_modification": "2024-01-26T10:08:18.053Z",
     "attendees": []
   }
 ]

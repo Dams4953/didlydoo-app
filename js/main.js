@@ -22,20 +22,22 @@ async function majEvents() {
             eventDiv.className = 'conteneur__idDiv';
 
             // html de la div
-            eventDiv.innerHTML = `<p><b>Nom de l'événement</b> : ${data.name}</p>
-                                        <p><b>Auteur</b> : ${data.author}</p>
-                                        <p><b>Date de l'événement</b> : ${data.dates[0]}</p>
-                                        <p><b>Description</b> : ${data.description}</p>
-                                        <button onclick="editEvent(div, '${data.name}', '${data.author}', '${data.dates[0]}', '${data.description}')">Éditer</button>
+            eventDiv.innerHTML = `<p><b><h3>Nom de l'événement</b> : ${data.name}</h3></p>
+                                        <p><span class="material-symbols-outlined">person</span><b> Auteur</b> : ${data.author}</p>
+                                        <p><span class="material-symbols-outlined">calendar_month</span><b> Date de l'événement</b> : ${data.dates[0]}</p>
+                                        <p><span class="material-symbols-outlined">event_note</span><b> Description</b> : ${data.description}</p>
+                                        <button class="conteneur__idDiv__bouton-edit" onclick="editEvent(div, '${data.name}', '${data.author}', '${data.dates[0]}', '${data.description}')">Éditer</button>
                                         <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>
-                                        <form class="dispo-form">
-                                            <label for="dispo">Disponibilité :</label>
+                                        <form class="conteneur__idDiv__dispo-form">
+                                            <label for="conteneur__idDiv__dispo-form">Disponibilité :</label>
                                             <input type="text" name="dispoName" placeholder="Votre nom" required>
                                             <select name="dispoStatus" required>
                                                 <option value="disponible">Disponible</option>
                                                 <option value="indisponible">Indisponible</option>
                                             </select>
-                                            <button type="submit">Ajouter la disponibilité</button>
+                                            <button class="conteneur__idDiv__dispo-form__edit" type="submit"><span class="material-symbols-outlined">
+                                            add
+                                            </span></button>
                                         </form>
                                         <div class="dispo-list"></div>`;
             let conteneur = document.querySelector('.conteneur');
@@ -74,20 +76,22 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
     // création div à chaque click sur le bouton
     let eventDiv = document.createElement('div');
     eventDiv.className = 'conteneur__idDiv';
-    eventDiv.innerHTML = `<p><b>Nom de l'événement</b> : ${eventName}</p>
-                                <p><b>Auteur</b> : ${eventAuthor}</p>
-                                <p><b>Date de l'événement</b> : ${formatDate}</p>
-                                <p><b>Description</b> : ${eventDescription}</p>
-                                <button onclick="editEvent(div, '${eventName}', '${eventAuthor}', '${eventDate}', '${eventDescription}')">Éditer</button>
+    eventDiv.innerHTML = `<p><b><h3>Nom de l'événement</b> : ${eventName}</h3></p>
+                                <p><span class="material-symbols-outlined">person</span><b>Auteur</b> : ${eventAuthor}</p>
+                                <p><span class="material-symbols-outlined">calendar_month</span><b>Date de l'événement</b> : ${formatDate}</p>
+                                <p><span class="material-symbols-outlined">event_note</span><b>Description</b> : ${eventDescription}</p>
+                                <button class="conteneur__idDiv__bouton-edit" onclick="editEvent(div, '${eventName}', '${eventAuthor}', '${eventDate}', '${eventDescription}')">Éditer</button>
                                 <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>
-                                <form class="dispo-form">
-                                    <label for="dispo">Disponibilité :</label>
+                                <form class="conteneur__idDiv__dispo-form">
+                                    <label for="conteneur__idDiv__dispo-form">Disponibilité :</label>
                                     <input type="text" name="dispoName" placeholder="Votre nom" required>
                                     <select name="dispoStatus" required>
                                         <option value="disponible">Disponible</option>
                                         <option value="indisponible">Indisponible</option>
                                     </select>
-                                    <button type="submit">Ajouter la disponibilité</button>
+                                    <button class="conteneur__idDiv__dispo-form__edit" type="submit"><span class="material-symbols-outlined">
+                                    add
+                                    </span></button>
                                 </form>
                                 <div class="dispo-list"></div>`;
     let conteneur = document.querySelector('.conteneur');
