@@ -14,33 +14,54 @@ async function majEvents() {
     try {
         // mise à jour du html avec les données du serveur
         events.forEach(data => {
-            
+
             // création div pour chaque évent
             let eventDiv = document.createElement('div');
             eventDiv.className = 'conteneur__idDiv';
 
             let datesTab = [];
 
-           
+
             data.dates.forEach(date => {
                 let dateParagraph = document.createElement('p');
-                dateParagraph.textContent = `Date de l'événement : ${date}`;
+                dateParagraph.textContent = `Date : ${date}`;
                 datesTab.push(dateParagraph);
             });
 
+
             // html de la div
             eventDiv.innerHTML = `<p><b><h3>Nom de l'événement</b> : ${data.name}</h3></p>
-                                        <p><span class="material-symbols-outlined">person</span><b> Auteur</b> : ${data.author}</p>`;
-            
-            // ajouter chaque paragraphe de date à la div
+                                        <p><span class="material-symbols-outlined">person</span><b> Auteur</b> : ${data.author}</p>
+                                        <p><span class="material-symbols-outlined">event_note</span><b> Description</b> : ${data.description}</p>`;
+
+            let dateDiv = document.createElement('div');
+            dateDiv.className = 'container-dates';
+            eventDiv.appendChild(dateDiv);
+
+            let dateTable = document.createElement('table');
+            dateTable.className = 'date-table';
+            dateDiv.appendChild(dateTable);
+
             datesTab.forEach(dateParagraph => {
-                eventDiv.appendChild(dateParagraph);
+                let row = dateTable.insertRow();
+
+                let cellule = row.insertCell();
+                cellule.className = 'cellules_tab';
+                cellule.appendChild(dateParagraph);
+
+                let celluleDispo = row.insertCell();
+                celluleDispo.className = 'cellules_dispo_tab';
+                
+                let divCelluleDispo = document.createElement('div');
+                divCelluleDispo.className = 'div_cellules_dispo_tab';
+                celluleDispo.appendChild(divCelluleDispo);
+
+                
+                
+                
             });
 
-            eventDiv.innerHTML += `<p><span class="material-symbols-outlined">event_note</span><b> Description</b> : ${data.description}</p>
-                                        <button class="conteneur__idDiv__bouton-edit" onclick="editEvent(div, '${data.name}', '${data.author}', '${data.dates[0]}', '${data.description}')">Éditer</button>
-                                        <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>
-                                        <form class="conteneur__idDiv__dispo-form">
+            eventDiv.innerHTML += `<form class="conteneur__idDiv__dispo-form">
                                             <label for="conteneur__idDiv__dispo-form">Disponibilité :</label>
                                             <input type="text" name="dispoName" placeholder="Votre nom" required>
                                             <select name="dispoStatus" required>
@@ -51,8 +72,11 @@ async function majEvents() {
                                             add
                                             </span></button>
                                         </form>
-                                        <div class="dispo-list"></div>`;
-            
+                                        <div class="dispo-list"></div>
+                                        <button class="conteneur__idDiv__bouton-edit" onclick="editEvent(div, '${data.name}', '${data.author}', '${data.dates[0]}', '${data.description}')">Éditer</button>
+                                        <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>`;
+                                        
+
 
             let conteneur = document.querySelector('.conteneur');
             main.appendChild(conteneur);
@@ -117,20 +141,38 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
 
     eventDiv.innerHTML += `<p><b><h3>Nom de l'événement</b> : ${eventName}</h3></p>
                             <p><span class="material-symbols-outlined">person</span><b>Auteur</b> : ${eventAuthor}</p>
-                            <p><span class="material-symbols-outlined">event_note</span><b>Description</b> : ${eventDescription}</p>`;
+                            <p><span class="material-symbols-outlined">event_note</span><b>Description</b> : ${eventDescription}</p>
+                            <button class="conteneur__idDiv__bouton-edit" onclick="editEvent(eventDiv, '${eventName}', '${eventAuthor}', '${formattedEventDate}', '${eventDescription}', '${formattedEventDate}')">Éditer</button>
+                            <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>`;
 
-    
-    datesTab.forEach(dateParagraph => {
-        eventDiv.appendChild(dateParagraph);
-    });
-    
 
+                            let dateDiv = document.createElement('div');
+                            dateDiv.className = 'container-dates';
+                            eventDiv.appendChild(dateDiv);
+                
+                            let dateTable = document.createElement('table');
+                            dateTable.className = 'date-table';
+                            dateDiv.appendChild(dateTable);
+                
+                            datesTab.forEach(dateParagraph => {
+                                let row = dateTable.insertRow();
+                
+                                let cellule = row.insertCell();
+                                cellule.className = 'cellules_tab';
+                                cellule.appendChild(dateParagraph);
+                
+                                let celluleDispo = row.insertCell();
+                                celluleDispo.className = 'cellules_dispo_tab';
+                                
+                                let divCelluleDispo = document.createElement('div');
+                                divCelluleDispo.className = 'div_cellules_dispo_tab';
+                                celluleDispo.appendChild(divCelluleDispo);
+  
+                            });
 
 
     // html div
-    eventDiv.innerHTML += `<button class="conteneur__idDiv__bouton-edit" onclick="editEvent(eventDiv, '${eventName}', '${eventAuthor}', '${formattedEventDate}', '${eventDescription}', '${formattedEventDate}')">Éditer</button>
-                            <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>
-                            <form class="conteneur__idDiv__dispo-form">
+    eventDiv.innerHTML += `<form class="conteneur__idDiv__dispo-form">
                                 <label for="conteneur__idDiv__dispo-form">Disponibilité :</label>
                                 <input type="text" name="dispoName" placeholder="Votre nom" required>
                                 <select name="dispoStatus" required>
@@ -149,7 +191,7 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
 
     function extractDatesAndFormat(datesTab) {
         return datesTab.map(dateElement => {
-           
+
             const dateString = dateElement.textContent.split(': ')[1].trim();
             return format(new Date(dateString), 'yyyy-MM-dd');
         });
@@ -171,7 +213,7 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
 
         // appel fonction pour modifier
         editEvent();
-        
+
 
     } catch (error) {
 
