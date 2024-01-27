@@ -13,7 +13,17 @@ Didlydoo App se distingue comme une solution web élaborée pour simplifier l'or
 - **date-fns :** Intégré pour faciliter la manipulation des dates de manière efficace.
 - **Node.js :** Employé pour initialiser le serveur web et assurer la gestion des requêtes HTTP.
 
+## screens
 
+![Capture d'écran 2024-01-26 153900](https://github.com/Dams4953/didlydoo-app/assets/141829372/32df369b-3b7f-46a3-8ad5-07626fa4a3ee)
+![Capture d'écran 2024-01-26 155256](https://github.com/Dams4953/didlydoo-app/assets/141829372/8ef89eb3-9f1c-42ba-bd42-a1bc51762b6a)
+![Capture d'écran 2024-01-26 154106](https://github.com/Dams4953/didlydoo-app/assets/141829372/ea9f2a5b-c089-4437-848d-19529e1c9fa5)
+
+## collaborateurs
+
+- Alexis
+- Joshua
+- Damien
 
 
 ## Installation
@@ -22,6 +32,7 @@ Clonez le répertoire backend sur votre ordinateur et ouvrez-le dans un terminal
 
 Pour lancer le serveur, tapez simplement node server/index.mjs pour démarrer le serveur (le terminal doit rester ouvert et opérationnel).
 
+### documentation
 <table>
         <thead>
             <tr>
@@ -100,14 +111,4 @@ Pour lancer le serveur, tapez simplement node server/index.mjs pour démarrer le
         </tbody>
     </table>
 
-## screens
 
-![Capture d'écran 2024-01-26 153900](https://github.com/Dams4953/didlydoo-app/assets/141829372/32df369b-3b7f-46a3-8ad5-07626fa4a3ee)
-![Capture d'écran 2024-01-26 155256](https://github.com/Dams4953/didlydoo-app/assets/141829372/8ef89eb3-9f1c-42ba-bd42-a1bc51762b6a)
-![Capture d'écran 2024-01-26 154106](https://github.com/Dams4953/didlydoo-app/assets/141829372/ea9f2a5b-c089-4437-848d-19529e1c9fa5)
-
-## collaborateurs
-
-- Alexis
-- Joshua
-- Damien
