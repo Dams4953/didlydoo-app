@@ -29,41 +29,20 @@ async function majEvents() {
             });
 
 
-            // html de la div
-            eventDiv.innerHTML = `<p><b><h3>Nom de l'événement</b> : ${data.name}</h3></p>
+  
+           
+
+
+
+
+
+
+            eventDiv.innerHTML += `<p><b><h3>Nom de l'événement</b> : ${data.name}</h3></p>
                                         <p><span class="material-symbols-outlined">person</span><b> Auteur</b> : ${data.author}</p>
-                                        <p><span class="material-symbols-outlined">event_note</span><b> Description</b> : ${data.description}</p>`;
-
-            let dateDiv = document.createElement('div');
-            dateDiv.className = 'container-dates';
-            eventDiv.appendChild(dateDiv);
-
-            let dateTable = document.createElement('table');
-            dateTable.className = 'date-table';
-            dateDiv.appendChild(dateTable);
-
-            datesTab.forEach(dateParagraph => {
-                let row = dateTable.insertRow();
-
-                let cellule = row.insertCell();
-                cellule.className = 'cellules_tab';
-                cellule.appendChild(dateParagraph);
-
-                let celluleDispo = row.insertCell();
-                celluleDispo.className = 'cellules_dispo_tab';
-                
-                let divCelluleDispo = document.createElement('div');
-                divCelluleDispo.className = 'div_cellules_dispo_tab';
-                celluleDispo.appendChild(divCelluleDispo);
-
-                
-                
-                
-            });
-
-            eventDiv.innerHTML += `<form class="conteneur__idDiv__dispo-form">
+                                        <p><span class="material-symbols-outlined">event_note</span><b> Description</b> : ${data.description}</p>
+                                        <form class="conteneur__idDiv__dispo-form">
                                             <label for="conteneur__idDiv__dispo-form">Disponibilité :</label>
-                                            <input type="text" name="dispoName" placeholder="Votre nom" required>
+                                            <input id="dispo_input" type="text" name="dispoName" placeholder="Votre nom" required>
                                             <select name="dispoStatus" required>
                                                 <option value="disponible">Disponible</option>
                                                 <option value="indisponible">Indisponible</option>
@@ -72,10 +51,51 @@ async function majEvents() {
                                             add
                                             </span></button>
                                         </form>
-                                        <div class="dispo-list"></div>
-                                        <button class="conteneur__idDiv__bouton-edit" onclick="editEvent(div, '${data.name}', '${data.author}', '${data.dates[0]}', '${data.description}')">Éditer</button>
+                                        <div class="dispo-list"></div>`;
+
+            // tableau
+            let dateDiv = document.createElement('div');
+            dateDiv.className = 'container-dates';
+            eventDiv.appendChild(dateDiv);
+
+            let dateTable = document.createElement('table');
+            dateTable.className = 'date-table';
+            dateDiv.appendChild(dateTable);
+
+            // colonne nom
+            let nomRow = dateTable.insertRow();
+            nomRow.id = 'tr_nom'
+
+            let NomcelluleDispo = nomRow.insertCell();
+            NomcelluleDispo.className = 'Nom_cellules_dispo_tab';
+
+            let thNom = document.createElement('th');
+            thNom.className = 'th_nom';
+            thNom.textContent = "noms";
+            nomRow.appendChild(thNom);
+
+            // colonnes dates
+            datesTab.forEach(dateParagraph => {
+
+                let dataRow = dateTable.insertRow();
+                dataRow.className = 'tr_date'
+
+                let thDate = document.createElement('th');
+                thDate.className = 'th_date';
+                thDate.textContent = dateParagraph.textContent;
+                dataRow.appendChild(thDate);
+
+
+                let celluleDispo = dataRow.insertCell();
+                celluleDispo.className = 'cellules_dispo_tab';
+
+                let divCelluleDispo = document.createElement('div');
+                divCelluleDispo.className = 'div_cellules_dispo_tab';
+                celluleDispo.appendChild(divCelluleDispo);
+            });
+
+            eventDiv.innerHTML += `<button class="conteneur__idDiv__bouton-edit" onclick="editEvent(div, '${data.name}', '${data.author}', '${data.dates[0]}', '${data.description}')">Éditer</button>
                                         <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>`;
-                                        
 
 
             let conteneur = document.querySelector('.conteneur');
@@ -146,29 +166,29 @@ document.getElementById('idBouton').addEventListener('click', async function (ev
                             <button class='conteneur__idDiv__bouton-suppression' type="button">Supprimer</button>`;
 
 
-                            let dateDiv = document.createElement('div');
-                            dateDiv.className = 'container-dates';
-                            eventDiv.appendChild(dateDiv);
-                
-                            let dateTable = document.createElement('table');
-                            dateTable.className = 'date-table';
-                            dateDiv.appendChild(dateTable);
-                
-                            datesTab.forEach(dateParagraph => {
-                                let row = dateTable.insertRow();
-                
-                                let cellule = row.insertCell();
-                                cellule.className = 'cellules_tab';
-                                cellule.appendChild(dateParagraph);
-                
-                                let celluleDispo = row.insertCell();
-                                celluleDispo.className = 'cellules_dispo_tab';
-                                
-                                let divCelluleDispo = document.createElement('div');
-                                divCelluleDispo.className = 'div_cellules_dispo_tab';
-                                celluleDispo.appendChild(divCelluleDispo);
-  
-                            });
+    let dateDiv = document.createElement('div');
+    dateDiv.className = 'container-dates';
+    eventDiv.appendChild(dateDiv);
+
+    let dateTable = document.createElement('table');
+    dateTable.className = 'date-table';
+    dateDiv.appendChild(dateTable);
+
+    datesTab.forEach(dateParagraph => {
+        let row = dateTable.insertRow();
+
+        let cellule = row.insertCell();
+        cellule.className = 'cellules_tab';
+        cellule.appendChild(dateParagraph);
+
+        let celluleDispo = row.insertCell();
+        celluleDispo.className = 'cellules_dispo_tab';
+
+        let divCelluleDispo = document.createElement('div');
+        divCelluleDispo.className = 'div_cellules_dispo_tab';
+        celluleDispo.appendChild(divCelluleDispo);
+
+    });
 
 
     // html div

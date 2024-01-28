@@ -278,27 +278,47 @@ footer {
         display: flex;
     }
 
-    .cellules_tab {
+    #tr_nom {
         display: flex;
-        border: solid 2px;
-        padding: 20px;
-        background-color: #5e5e5e;
-       
+        flex-direction: column-reverse;
+
+        .th_nom {
+            padding: 10px;
+        }
     }
 
-    .cellules_dispo_tab {
+    .tr_date {
         display: flex;
-        padding: 30px;
+        flex-direction: column;
+
+        .th_date {
+            padding: 10px;
+        }
+    }
+
+    .Nom_cellules_dispo_tab {
+        display: flex;
         justify-content: center;
         border: solid 2px;
         background-color: #9b9b9b;
-        
+        height: 100px;
+        width: 200px;
+    }
 
-        .div_cellules_dispo_tab_{
+
+    .cellules_dispo_tab {
+        display: flex;
+        justify-content: center;
+        border: solid 2px;
+        background-color: #9b9b9b;
+        height: 100px;
+        width: 200px;
+
+
+        .div_cellules_dispo_tab_ {
             padding: 10px;
             border: solid 1px;
         }
 
-       
     }
 }

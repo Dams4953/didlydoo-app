@@ -233,18 +233,35 @@ footer p {
 .date-table tbody {
   display: flex;
 }
-.date-table .cellules_tab {
+.date-table #tr_nom {
   display: flex;
-  border: solid 2px;
-  padding: 20px;
-  background-color: #5e5e5e;
+  flex-direction: column-reverse;
 }
-.date-table .cellules_dispo_tab {
+.date-table #tr_nom .th_nom {
+  padding: 10px;
+}
+.date-table .tr_date {
   display: flex;
-  padding: 30px;
+  flex-direction: column;
+}
+.date-table .tr_date .th_date {
+  padding: 10px;
+}
+.date-table .Nom_cellules_dispo_tab {
+  display: flex;
   justify-content: center;
   border: solid 2px;
   background-color: #9b9b9b;
+  height: 100px;
+  width: 200px;
+}
+.date-table .cellules_dispo_tab {
+  display: flex;
+  justify-content: center;
+  border: solid 2px;
+  background-color: #9b9b9b;
+  height: 100px;
+  width: 200px;
 }
 .date-table .cellules_dispo_tab .div_cellules_dispo_tab_ {
   padding: 10px;
